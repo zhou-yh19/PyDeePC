@@ -136,8 +136,8 @@ class DeePC(object):
             constraints.append(cp.norm(slack_u, 2) <= DeePC._SMALL_NUMBER)
 
         # u, y = self.Uf @ g, self.Yf @ g
-        u = cp.reshape(u, (self.horizon, self.M))
-        y = cp.reshape(y, (self.horizon, self.P))
+        u = cp.reshape(u, (self.horizon, self.M), order='C')
+        y = cp.reshape(y, (self.horizon, self.P), order='C')
 
         _constraints = build_constraints(u, y) if build_constraints is not None else (None, None)
 
